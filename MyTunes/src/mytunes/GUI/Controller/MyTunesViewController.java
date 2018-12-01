@@ -10,6 +10,8 @@ package mytunes.GUI.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.embed.swing.JFXPanel;
@@ -40,13 +42,13 @@ import mytunes.be.Song;
  */
 public class MyTunesViewController implements Initializable
 {
-    private final MyTunesModel mtm = new MyTunesModel();
-    private final SongSearcher ss = new SongSearcher();
+    private MyTunesModel mtm;
+    private SongSearcher ss;
     
     @FXML
     private ListView<?> listPlaylists;
     @FXML
-    private ListView<?> listSongs;
+    private ListView<Song> listSongs;
     @FXML
     private ListView<?> listSongsOnPlaylist;
     @FXML
@@ -87,13 +89,23 @@ public class MyTunesViewController implements Initializable
     @FXML
     private TextField writeSearch;
     
+    public MyTunesViewController() {
+        try
+        {
+            mtm = new MyTunesModel();
+            ss = new SongSearcher();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(MyTunesViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        //todo
+        
     }    
 
     @FXML

@@ -8,6 +8,7 @@ package mytunes.BLL;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mytunes.DAL.SongDAO;
@@ -88,6 +89,17 @@ public class MyTunesManager
             Logger.getLogger(MyTunesManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public List<Song> getAllSongs() throws IOException {
+        try
+        {
+            return sdao.getAllSongs();
+        } catch (IOException ex)
+        {
+            throw new IOException("Could not show all movies cause: " + ex.getMessage());
+        }
+        
     }
 }
 
