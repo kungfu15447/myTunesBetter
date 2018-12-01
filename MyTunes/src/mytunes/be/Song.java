@@ -67,4 +67,9 @@ public class Song
     {
         this.filepath = filepath;
     }
+    
+    @Override
+    public String toString() {
+        return title + " " + artist + " " + genre + " " + Integer.toString(length);
+    }
 }

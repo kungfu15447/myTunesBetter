@@ -25,6 +25,7 @@ public class MyTunesModel
     private MediaPlayer mediaPlayer;
     private final SongSearcher ss;
     private MyTunesManager mtm;
+    private String trueTrueFilePath;
 //    Media media = new Media(new File(filePath).toURI().toString());
 //    MediaPlayer mediaPlayer = new MediaPlayer(media);
     
@@ -34,19 +35,22 @@ public class MyTunesModel
     }
     
     
-    public String chooseFile()
+    public void initializeFile()
     {
         String filePath;
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Select a File (*.mp3)", "*.mp3");
             fileChooser.getExtensionFilters().add(filter);
             File file = fileChooser.showOpenDialog(null);
-            filePath = file.toURI().toString();
-            String trueFilePath = filePath.replaceFirst("file:/", "");
-            String trueTrueFilePath = trueFilePath.replace("%20", " ");
-            System.out.println(trueTrueFilePath);
-            System.out.println(mtm.getDurationInSec(trueTrueFilePath));
-            return trueTrueFilePath;
+            if (file != null) {
+                filePath = file.toURI().toString();
+                String trueFilePath = filePath.replaceFirst("file:/", "");
+                trueTrueFilePath = trueFilePath.replace("%20", " ");
+                
+            }else {
+                System.out.println("No file chosen");
+                
+            }
     }
     
     public void playMusic()
@@ -80,22 +84,28 @@ public class MyTunesModel
     }
     
     public String getSongTitle() {
-        String filepath = chooseFile();
-        String songTitle = mtm.getSongTitle(filepath);
+        String songTitle = mtm.getSongTitle(trueTrueFilePath);
         if (!songTitle.isEmpty() || !songTitle.equals(null)) {
             return songTitle;
         }else {
-        return "This song has no title";
+        return "This song has no current title";
         }
     }
     
     public String getDuration() {
-        System.out.println("I am being activated");
-        String filepath = chooseFile();
-        String duration = Integer.toString(mtm.getDurationInSec(filepath));
-        System.out.println(duration);
+        String duration = Integer.toString(mtm.getDurationInSec(trueTrueFilePath));
         return duration;
     }
+    
+    public String getFilePath() {
+        return trueTrueFilePath;
+    }
+    
+    public String getArtist() {
+        String artist = mtm.getAuthor(trueTrueFilePath);
+        return artist;
+    }
+    
     
 //    public void searchWrite()
 //    {

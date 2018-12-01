@@ -54,6 +54,8 @@ public class CreateSongController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        txtDuration.setDisable(true);
+        txtFile.setDisable(true);
         comboCategoryBox.setItems(FXCollections.observableArrayList("Blues","Hip Hop","Pop","Rap",
                 "Rock","Techno"));
         comboCategoryBox.setVisibleRowCount(6);
@@ -70,9 +72,11 @@ public class CreateSongController implements Initializable
     @FXML
     private void handleChooseBtn(ActionEvent event)
     {
-        txtFile.setText(mtm.chooseFile());
-        txtTitleInput.setText(mtm.getSongTitle());
+        mtm.initializeFile();
         txtDuration.setText(mtm.getDuration());
+        txtTitleInput.setText(mtm.getSongTitle());
+        txtFile.setText(mtm.getFilePath());
+        txtArtistInput.setText(mtm.getArtist());
     }
 
     @FXML
@@ -116,6 +120,8 @@ public class CreateSongController implements Initializable
         }
         return category;
     }
+    
+    
     
     
 }
