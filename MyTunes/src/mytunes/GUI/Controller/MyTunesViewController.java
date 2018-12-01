@@ -105,7 +105,7 @@ public class MyTunesViewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        
+        //listSongs.setItems(mtm.getSongs());
     }    
 
     @FXML

@@ -90,7 +90,12 @@ public class CreateSongController implements Initializable
     @FXML
     private void handleSaveBtn(ActionEvent event)
     {
-        
+        String title = txtTitleInput.getText();
+        int duration = mtm.getDurationInSec();
+        String filepath = txtFile.getText();
+        String genre = comboCategoryBox.getSelectionModel().getSelectedItem();
+        String artist = txtArtistInput.getText();
+        mtm.createSong(title, duration, artist, genre, filepath);
     }
 
     @FXML

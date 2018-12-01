@@ -132,6 +132,9 @@ public class MyTunesModel
         songList.add(song);
     }
     
+    public ObservableList<Song> getSongs() {
+        return songList;
+    }
     
 //    public void searchWrite()
 //    {
