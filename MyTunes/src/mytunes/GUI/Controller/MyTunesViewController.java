@@ -121,8 +121,15 @@ public class MyTunesViewController implements Initializable
     }
 
     @FXML
-    private void editPlaylist(ActionEvent event)
+    private void editPlaylist(ActionEvent event) throws IOException
     {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunes/GUI/CreatePlaylist.fxml"));
+        Parent root = (Parent)loader.load();
+        
+        CreatePlaylistController cpcontroller = loader.getController();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML

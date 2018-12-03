@@ -68,10 +68,13 @@ public class EditSongController implements Initializable
                 break;
             case 3:
                 category = "rap";
+                break;
             case 4:
                 category = "rock";
+                break;
             case 5:
                 category = "techno";
+                break;
             default: 
                 throw new UnsupportedOperationException("Category not chosen");
         }
